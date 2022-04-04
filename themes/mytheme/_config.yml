@@ -1,0 +1,17 @@
+# Header
+logo: Peter Hou's Logo
+
+# navigatior items
+navitems:
+  Home: /
+  CV: /CV.pdf
+  Research: /research
+  Honors: /honors
+  Gallery: /gallery
+  About: /about
+
+stylesheets:
+  - /css/style.css
+
+scripts:
+  - /js/scripts.js

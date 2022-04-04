@@ -1,0 +1,29 @@
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title> Peter Hou | Homepage </title>
+<link rel="icon" type="image/svg" href="/image/logo.svg">
+
+<!-- for fonts -->
+<link href="https://fonts.font.im/css?family=Marcellus+SC" rel="stylesheet">
+
+<!-- for icons -->
+<script src="https://kit.fontawesome.com/7a3299a1e5.js" crossorigin="anonymous"></script>
+
+<!-- for mottos -->
+<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+
+<%# load css %>
+<% if (theme.stylesheets !== undefined && theme.stylesheets.length > 0) { %>
+      <% theme.stylesheets.forEach(url => { %>
+            <link rel="stylesheet" href="<%= url_for(url) %>">
+      <% }); %>
+<% } %>
+
+<%# load javascript %>
+<% if (theme.scripts !== undefined && theme.scripts.length > 0) { %>
+      <% theme.scripts.forEach(url => { %>
+            <script src="<%- url_for(url) %>"></script>
+      <% }); %>
+<% } %>

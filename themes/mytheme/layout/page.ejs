@@ -1,0 +1,5 @@
+<% if(is_page() && is_current("about")){ %>
+    <%- partial('_page/about') %>
+<% }else{ %>
+    <%- partial('_page/404') %>
+<% } %>

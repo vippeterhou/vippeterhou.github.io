@@ -1,0 +1,17 @@
+<header id="header" class="header">
+    <div class="header-container">
+        <div id="moon-sun" class="moon-sun" onclick="switchDarkLightMode()">
+            <i class="fa-solid fa-moon"></i>
+        </div>
+        <div class="logo">
+            <a href="<%- theme.navitems.Home %> ">
+                <img class="logosvg" height="100%" src="/image/logo.svg">
+            </a>
+        </div>
+        <div class="menu">
+            <% for (var i in theme.navitems) { %>
+            <a class="navitems" href="<%- theme.navitems[i] %>"><%= i %></a>
+            <% } %>
+        </div>
+    </div>
+</header>

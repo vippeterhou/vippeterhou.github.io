@@ -1,0 +1,99 @@
+.header
+    height 23vh
+    padding-top 45px
+    box-sizing border-box
+
+.header-container
+    text-align center
+
+.moon-sun
+    font-size 32px
+    position absolute
+    right 30px
+    top 45px
+
+body.dark .moon-sun
+    color white
+
+.logo
+    height 75px
+
+body.dark .logo img
+    background #717171
+
+.menu
+    font-size 32px
+    margin-top 45px
+
+body.dark .menu > a
+    color white
+
+.menu > a
+    text-decoration: none
+    margin 0 10px
+    color #64363C
+
+.navitems
+    position relative
+
+.navitems:hover::before
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -8px;
+    transform: translateX(-50%);
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    transition: all .25s;
+    visibility: visible;
+    opacity: 0.5
+    background-color: black;
+
+.mainimg
+    width 100%
+    height 70vh
+
+.mainimg img
+    width inherit
+    height inherit
+
+.motto-container
+    position absolute
+    text-align center
+    left 0
+    font-size 52px
+    width 100%
+    top 40vh
+    color #DAC9A6
+    font-family $poetry-font-family
+
+@keyframes blink
+  0%
+    opacity 1
+  50%
+    opacity 0
+  100%
+    opacity 1
+
+.motto-cursor
+    animation blink 1s infinite
+
+body.dark .footer
+    color white
+
+.footer
+    height 7vh
+    text-align center
+
+.copyright
+    height inherit
+    font-size 20px
+    line-height 65px
+
+
+.error-msg
+    text-align left
+    font-size 42px
+    margin-left 30px
