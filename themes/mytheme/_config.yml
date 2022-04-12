@@ -15,3 +15,5 @@ stylesheets:
 
 scripts:
   - /js/scripts.js
+  - /js/home.js
+  - /js/nonhome.js
