@@ -26,18 +26,15 @@ body.dark .moon-sun
     height 50%
 
 body.dark .logo-container img
-    background #717171
+    filter invert(18%)
 
 .menu
     font-size 32px
 
-body.dark .menu > a
-    color white
-
 .menu > a
     text-decoration: none
     margin 0 10px
-    color #64363C
+    color var(--navtext)
 
 .navitems
     position relative
@@ -55,7 +52,7 @@ body.dark .menu > a
     transition: all .25s;
     visibility: visible;
     opacity: 0.5
-    background-color: black;
+    background-color: var(--navtext);
 
 .mainbody
     width 100%
@@ -87,12 +84,10 @@ body.dark .menu > a
 .motto-cursor
     animation blink 1s infinite
 
-body.dark .footer
-    color white
-
 .footer
     height 7vh
     text-align center
+    color var(--normaltext)
 
 .copyright
     height inherit
@@ -103,9 +98,7 @@ body.dark .footer
     text-align left
     font-size 42px
     margin-left 30px
-
-.page-container
-    margin 24px 42px
+    color var(--normaltext)
 
 .post-container
     max-width 50rem
@@ -113,6 +106,8 @@ body.dark .footer
 
 .page-text
     font-size 24px
+    margin-left 30px
+    color var(--normaltext)
 
 #loading-container
     position: fixed;

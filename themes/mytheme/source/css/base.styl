@@ -1,3 +1,12 @@
+:root
+    --navtext: #64363C
+    --normaltext: black
+    --linktext: #2EA9DF
+
+:root body.dark
+    --navtext: #FEDFE1
+    --normaltext: white
+
 html
     font-family $default-font-family
 
@@ -5,14 +14,23 @@ html
     font-family $body-font-family
 
 body
+    --duration: 1s;
+    --timing: ease;
+    transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
+
+body *
     --duration: 0.5s;
     --timing: ease;
     transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
+
+body
     background #f7f7f7
 
 body.dark
     background #0F2540
 
-body.dark img:not([src*=".svg"])
 body.dark img:not([src*=".gif"])
     filter brightness(.8) contrast(1.2)
+
+a
+    color var(--linktext)
