@@ -5,7 +5,14 @@ html
     font-family $body-font-family
 
 body
+    --duration: 0.5s;
+    --timing: ease;
+    transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
     background #f7f7f7
 
 body.dark
-    background #08192D
+    background #0F2540
+
+body.dark img:not([src*=".svg"])
+body.dark img:not([src*=".gif"])
+    filter brightness(.8) contrast(1.2)
