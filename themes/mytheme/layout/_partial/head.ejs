@@ -2,7 +2,18 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title> Peter Hou | Homepage </title>
+
+<% var title = "Undefined"; %>
+<% if (is_home()) { %>
+<% title = "Homepage" %>
+<% } else if (is_page()) { %>
+<% title = page.title %>
+<% } else if (is_post()) { %>
+<% title = page.title %>
+<% console.log(page.title) %>
+<% } %>
+<title> Peter Hou | <%- title %> </title>
+
 <link rel="icon" type="image/svg" href="/image/logo.svg">
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
