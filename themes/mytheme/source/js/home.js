@@ -27,7 +27,7 @@ function fetchMotto() {
             clearInterval(timer);
         }
         mottoElement.innerText = (text.slice(0, i++));
-    }, 100);
+    }, 200);
   });
 };
 
