@@ -30,6 +30,8 @@ body.dark .logo-container img
 
 .menu
     font-size 32px
+    text-overflow ellipsis
+    white-space nowrap
 
 .menu > a
     text-decoration: none
@@ -71,7 +73,7 @@ body.dark .logo-container img
     font-size 58px
     width 100%
     color #DAC9A6
-    font-family $poetry-font-family
+    font-family $body-font-family
 
 @keyframes blink
   0%
@@ -84,18 +86,22 @@ body.dark .logo-container img
 .motto-cursor
     animation blink 1s infinite
 
+.non-home-footer
+    position fixed
+    bottom 0
+
 .footer
     height 7vh
-    text-align center
     color var(--normaltext)
+    width 100%
+    padding-bottom 40px
 
 .copyright
-    height inherit
     font-size 20px
-    line-height 65px
+    text-align center
 
 .error-msg
-    text-align left
+    text-align center
     font-size 42px
     margin-left 30px
     color var(--normaltext)

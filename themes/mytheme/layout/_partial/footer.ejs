@@ -1,5 +1,11 @@
-<footer id="footer" class="footer">
+<footer id="footer"
+    <% if (!is_home()) { %>
+        class="footer non-home-footer"
+    <% } else { %>
+        class="footer"
+    <% } %>
+    >
     <div class="copyright">
-        ©️Peter Hou | All rights reserved.
+        <p>©Peter Hou | All rights reserved.<p>
     </div>
 </footer>
