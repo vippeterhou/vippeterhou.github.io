@@ -1,0 +1,18 @@
+<%
+function collectImages(photoList) {
+  var images = ''
+  for(var i = 0; i < photoList.length; i++) {
+    var photo = photoList[i]
+    images += `<a id="single_image" data-fancybox="lightbox" href="${photo}"><img class="galleryitem" src="${photo}" alt="${photo}" /></a>`
+
+  }
+  return images
+}
+const images = collectImages(theme.certificates);
+%>
+
+<main>
+    <div class="gallerycontainer">
+      <%- images %>
+    </div>
+</main>

@@ -2,6 +2,8 @@
     <%- partial('_page/post') %>
 <% } else if(is_page() && is_current("about")){ %>
     <%- partial('_page/about') %>
+<% } else if(is_page() && is_current("honors")){ %>
+    <%- partial('_page/honors') %>
 <% }else{ %>
     <%- partial('_page/404') %>
 <% } %>
