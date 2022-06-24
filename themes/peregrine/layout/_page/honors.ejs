@@ -3,7 +3,7 @@ function collectImages(photoList) {
   var images = ''
   for(var i = 0; i < photoList.length; i++) {
     var photo = photoList[i]
-    images += `<a id="single_image" data-fancybox="lightbox" href="${photo}"><img class="galleryitem" src="${photo}" alt="${photo}" /></a>`
+    images += `<a data-fancybox="certificates" href="${photo}"><img class="galleryitem" src="${photo}" alt="${photo}" /></a>`
 
   }
   return images
@@ -16,3 +16,29 @@ const images = collectImages(theme.certificates);
       <%- images %>
     </div>
 </main>
+
+<script>
+
+$('[data-fancybox="certificates"]').fancybox({
+  buttons: [
+    // "zoom",
+    "share",
+    "slideShow",
+    "fullScreen",
+    // "download",
+    "thumbs",
+    "close"
+  ],
+  clickContent: function(current, event) {
+    return false;
+  },
+  thumbs: {
+    autoStart: false, // Display thumbnails on opening
+    hideOnClose: true, // Hide thumbnail grid when closing animation starts
+    parentEl: ".fancybox-container", // Container is injected into this element
+    axis: "y" // Vertical (y) or horizontal (x) scrolling
+  },
+  animationEffect: "fade",
+  transitionEffect: "fade"
+});
+</script>

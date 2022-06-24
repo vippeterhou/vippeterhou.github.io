@@ -19,6 +19,7 @@ function toggleDarkLightMode () {
     moonsun.children[0].classList.toggle("fa-sun");
 }
 function readDarkLightModeCookie() {
+    // console.log("asfasdfasdf");
     prepareElements();
     const isDarkMode = window.localStorage.getItem("phhp-theme") == "dark";
     if (isDarkMode) {
