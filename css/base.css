@@ -1,0 +1,37 @@
+:root {
+  --navtext: #64363c;
+  --normaltext: #000;
+  --linktext: #2ea9df;
+}
+:root body.dark {
+  --navtext: #fedfe1;
+  --normaltext: #fff;
+}
+html {
+  font-family: $default-font-family;
+}
+.markdown {
+  font-family: $body-font-family;
+}
+body {
+  --duration: 1s;
+  --timing: ease;
+  transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
+}
+body * {
+  --duration: 0.5s;
+  --timing: ease;
+  transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
+}
+body {
+  background: #f7f7f7;
+}
+body.dark {
+  background: #0f2540;
+}
+body.dark img:not([src*=".gif"]) {
+  filter: brightness(0.8) contrast(1.2);
+}
+a {
+  color: var(--linktext);
+}

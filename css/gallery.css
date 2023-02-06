@@ -1,0 +1,13 @@
+.gallerycontainer {
+  list-style: none;
+  column-gap: 5px;
+  padding: 0 100px;
+  column-count: 5;
+}
+.galleryitem {
+  width: 100%;
+  padding: 2px;
+  margin: 0;
+  box-sizing: border-box;
+  break-inside: avoid;
+}
