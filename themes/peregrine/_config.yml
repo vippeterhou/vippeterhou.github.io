@@ -18,27 +18,29 @@ scripts:
   - /js/home.js
   - /js/nonhome.js
 
+mainimage: /image/main/over-water-road.jpg
+
 certificates:
-	- https://s1.imagehub.cc/images/2022/06/21/scholarshipB.png
-	- https://s1.imagehub.cc/images/2022/06/21/PRAXAIR.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/MSRA.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/NUEDC.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/League.png
-	- https://s1.imagehub.cc/images/2022/06/21/jihanbing.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page23.png
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page22.png
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page24.png
-	- https://s1.imagehub.cc/images/2022/06/21/graduate.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page21.png
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page20.png
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page19.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page18.png
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page17.png
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page15.png
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page14.png
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page16.png
-	- https://s1.imagehub.cc/images/2022/06/21/ctScholar.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page13.png
-	- https://s1.imagehub.cc/images/2022/06/21/BuildingBridges.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/chuntsung.jpg
-	- https://s1.imagehub.cc/images/2022/06/21/cv_Page12.jpg
+	- /image/honors/scholarshipB.png
+	- /image/honors/PRAXAIR.jpg
+	- /image/honors/MSRA.jpg
+	- /image/honors/NUEDC.jpg
+	- /image/honors/League.png
+	- /image/honors/jihanbing.jpg
+	- /image/honors/cv_Page23.png
+	- /image/honors/cv_Page22.png
+	- /image/honors/cv_Page24.png
+	- /image/honors/graduate.jpg
+	- /image/honors/cv_Page21.png
+	- /image/honors/cv_Page20.png
+	- /image/honors/cv_Page19.jpg
+	- /image/honors/cv_Page18.png
+	- /image/honors/cv_Page17.png
+	- /image/honors/cv_Page15.png
+	- /image/honors/cv_Page14.png
+	- /image/honors/cv_Page16.png
+	- /image/honors/ctScholar.jpg
+	- /image/honors/cv_Page13.png
+	- /image/honors/BuildingBridges.jpg
+	- /image/honors/chuntsung.jpg
+	- /image/honors/cv_Page12.jpg
