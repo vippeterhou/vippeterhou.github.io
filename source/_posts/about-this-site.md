@@ -6,12 +6,12 @@ tags:
 
 # About This Site
 
-### It's been near 5 years since I published my [first homepage](https://htmlpreview.github.io/?https://github.com/vippeterhou/HomepageV1/blob/master/index.html). 
-[![homepagev1.jpg](https://s1.imagehub.cc/images/2022/04/10/homepagev1.jpg)](https://www.imagehub.cc/image/ZmiG1)
+### It's been 5 years since I published my [first version of homepage](https://htmlpreview.github.io/?https://github.com/vippeterhou/HomepageV1/blob/master/index.html) in 2017.
+![HomepageV1](/image/posts/homepage-v1.jpg)
 
-### But recently I wanted a new appearance of it, given that my aesthetic standard changes and my skill grows.
+### But recently some ideas came to my mind and I wanted to update my homepage thoroughly, considering my aesthetic standard changes and my skill grows.
 
-### So I build this site from scratch to ensure it's customizable and everything is under control.
-[![homepagev2-scratch.png](https://s1.imagehub.cc/images/2022/04/10/homepagev2-scratch.png)](https://www.imagehub.cc/image/ZmXd6)
+### So I built this site from scratch. All I want to do is to make this site more customizable and make everything under control.
+![HomepageV2](/image/posts/homepage-v2.jpg)
 
-### Now it's what you can see! 
+### I love the new look of my site.
