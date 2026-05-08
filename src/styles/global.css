@@ -9,7 +9,6 @@
 :root {
   --accent:        #9B2335;
   --accent-hover:  #7A1A28;
-  --logo-color:    #C4783A;
   --nav-color:     #9B2335;
 
   --bg:            #f7f7f7;
@@ -29,7 +28,6 @@
 [data-theme="dark"] {
   --accent:        #E8637A;
   --accent-hover:  #F07A90;
-  --logo-color:    #d4a06a;
   --nav-color:     #FEDFE1;
 
   --bg:            #0F2540;

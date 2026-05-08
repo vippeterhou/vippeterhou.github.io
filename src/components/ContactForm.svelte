@@ -1,5 +1,4 @@
 <script>
-  // Replace with your Formspree form ID: https://formspree.io
   const FORM_ID = 'xkoyzaqo'
 
   let name = ''
