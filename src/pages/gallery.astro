@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Gallery from '../components/Gallery.svelte'
+
+const cloudName  = import.meta.env.CLOUDINARY_CLOUD_NAME
+const apiKey     = import.meta.env.CLOUDINARY_API_KEY
+const apiSecret  = import.meta.env.CLOUDINARY_API_SECRET
+
+let images = []
+
+try {
+  const credentials = btoa(`${apiKey}:${apiSecret}`)
+
+  const fetchFolder = async (folder) => {
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/${cloudName}/resources/by_asset_folder?asset_folder=${encodeURIComponent(folder)}&max_results=500`,
+      { headers: { Authorization: `Basic ${credentials}` } }
+    )
+    return res.json()
+  }
+
+  let data = await fetchFolder('gallery')
+  if (!data.resources?.length) {
+    data = await fetchFolder('Home/gallery')
+  }
+
+  images = (data.resources ?? [])
+    .map(r => {
+      const thumb = r.secure_url.replace('/upload/', '/upload/w_600,c_scale,q_auto,f_auto/')
+      const full  = r.secure_url.replace('/upload/', '/upload/q_auto,f_auto/')
+      return {
+        thumb,
+        full,
+        width:  r.width,
+        height: r.height,
+        alt:    r.public_id.split('/').pop().replace(/^\d+_/, '').replace(/_/g, ' '),
+      }
+    })
+} catch {}
+---
+
+<BaseLayout title="Gallery — Peter Hou" description="Photo gallery of Peter Hou">
+  <section class="page-section">
+    <div class="container">
+
+      {images.length === 0 ? (
+        <p class="empty">No photos yet — upload images to your <code>gallery/</code> folder on Cloudinary.</p>
+      ) : (
+        <Gallery {images} client:load />
+      )}
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .empty {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+
+  code {
+    font-size: 0.875rem;
+    background: var(--bg-secondary);
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+</style>

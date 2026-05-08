@@ -1,0 +1,114 @@
+---
+import ThemeToggle from './ThemeToggle.svelte'
+
+const navLinks = [
+  { href: '/',        label: 'Home'    },
+  { href: '/CV.pdf',  label: 'CV'      },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/games',   label: 'Games'   },
+  { href: '/about',   label: 'About'   },
+]
+
+const path = Astro.url.pathname
+const current = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path
+---
+
+<header>
+  <!-- Theme toggle pinned top-right -->
+  <div class="toggle-wrap">
+    <ThemeToggle client:only="svelte" />
+  </div>
+
+  <!-- LOGO PLACEHOLDER — replace once you have a real icon -->
+  <a href="/" class="logo-link" aria-label="Home">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true">
+      <rect width="48" height="48" rx="8" fill="#9B2335"/>
+      <text x="24" y="33" font-family="Georgia, serif" font-size="26" font-weight="700" text-anchor="middle" fill="white">P</text>
+    </svg>
+  </a>
+
+  <!-- Centered nav -->
+  <nav aria-label="Main navigation">
+    <ul>
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class:list={['nav-link', { active: current === link.href }]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    position: relative;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 2rem 1rem;
+    /* text-align: center + inline-flex is more reliable than flexbox column */
+    text-align: center;
+  }
+
+  .toggle-wrap {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  .logo-link {
+    display: inline-block;
+    line-height: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .logo-link svg {
+    display: block;
+    transition: opacity var(--transition);
+  }
+
+  .logo-link:hover svg {
+    opacity: 0.8;
+  }
+
+  nav ul {
+    display: inline-flex;
+    list-style: none;
+    gap: 0.125rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--nav-color);
+    padding: 0.3rem 0.875rem;
+    border-radius: var(--radius);
+    transition: color var(--transition), background var(--transition);
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    color: var(--accent);
+  }
+
+  .nav-link.active {
+    font-weight: 900;
+    color: var(--accent);
+  }
+
+  @media (max-width: 480px) {
+    .nav-link {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.5rem;
+    }
+  }
+</style>

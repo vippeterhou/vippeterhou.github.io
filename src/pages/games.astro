@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const games = [
+  {
+    title: 'Minesweeper',
+    description: 'The classic puzzle game. Clear the board without detonating a mine.',
+    href: '/games/minesweeper',
+    available: false,
+  },
+  {
+    title: 'Adventure in a 3D World',
+    description: 'Explore an interactive 3D world full of surprises.',
+    href: '/games/adventure-3d',
+    available: false,
+  },
+]
+---
+
+<BaseLayout title="Games — Peter Hou" description="Games by Peter Hou">
+  <section class="page-section">
+    <div class="container">
+
+      <div class="grid">
+        {games.map(game => (
+          <div class="card">
+            <div class="thumbnail" aria-hidden="true">
+              <span class="thumb-label">{game.title[0]}</span>
+            </div>
+            <div class="card-body">
+              <h2>{game.title}</h2>
+              <p>{game.description}</p>
+              {game.available
+                ? <a href={game.href} class="play-btn">Play</a>
+                : <span class="coming-soon">Coming Soon</span>
+              }
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #722F37, #3E1018);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .thumb-label {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+    user-select: none;
+  }
+
+  .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .card-body h2 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--nav-color);
+  }
+
+  .card-body p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .play-btn {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    padding: 0.45rem 1.25rem;
+    background: var(--accent);
+    color: white;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background var(--transition);
+  }
+
+  .play-btn:hover {
+    background: var(--accent-hover);
+    color: white;
+  }
+
+  .coming-soon {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+</style>

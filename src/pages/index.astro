@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Hero from '../components/Hero.svelte'
+
+const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME
+const apiKey    = import.meta.env.CLOUDINARY_API_KEY
+const apiSecret = import.meta.env.CLOUDINARY_API_SECRET
+
+let heroImages = []
+
+try {
+  const credentials = btoa(`${apiKey}:${apiSecret}`)
+
+  const fetchFolder = async (folder) => {
+    const res = await fetch(
+      `https://api.cloudinary.com/v1_1/${cloudName}/resources/by_asset_folder?asset_folder=${encodeURIComponent(folder)}&max_results=100`,
+      { headers: { Authorization: `Basic ${credentials}` } }
+    )
+    return res.json()
+  }
+
+  let data = await fetchFolder('main-desktop')
+  if (!data.resources?.length) {
+    data = await fetchFolder('Home/main-desktop')
+  }
+
+  heroImages = (data.resources ?? []).map(r =>
+    r.secure_url.replace('/upload/', '/upload/q_auto,f_auto/')
+  )
+} catch {}
+---
+
+<BaseLayout title="Peter Hou">
+  <Hero images={heroImages} client:load />
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ContactForm from '../components/ContactForm.svelte'
+---
+
+<BaseLayout title="About — Peter Hou" description="About Peter Hou">
+  <section class="page-section">
+    <div class="container">
+
+      <div class="content">
+        <p>
+          This is the third version of my personal homepage, built in the age of AI.
+          You can find the archived versions below:
+        </p>
+        <ul class="versions">
+          <li>
+            Version 1 (2017) — <a href="https://htmlpreview.github.io/?https://github.com/vippeterhou/HomepageV1/blob/master/index.html" target="_blank" rel="noopener">view</a>
+          </li>
+          <li>
+            Version 2 (2022) — <span class="coming">link coming soon</span>
+          </li>
+        </ul>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="contact">
+        <h2>Leave Me a Message</h2>
+        <ContactForm client:load />
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .content {
+    font-size: 1rem;
+    line-height: 1.8;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .versions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-left: 1rem;
+  }
+
+  .versions li::before {
+    content: '→ ';
+    color: var(--text-muted);
+  }
+
+  .versions a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .versions a:hover {
+    color: var(--accent-hover);
+  }
+
+  .coming {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .contact h2 {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--nav-color);
+    margin-bottom: 1.25rem;
+  }
+</style>
