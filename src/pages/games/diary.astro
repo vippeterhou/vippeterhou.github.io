@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import DiaryEntry from '../../components/DiaryEntry.svelte'
+---
+
+<BaseLayout title="Metropolitan Diary — Peter Hou" description="A Metropolitan Diary entry from the New York Times">
+  <section class="page-section">
+    <div class="container">
+
+      <div class="header">
+        <p class="label">The New York Times</p>
+        <h1 class="title">Metropolitan Diary</h1>
+      </div>
+
+      <DiaryEntry client:load />
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .label {
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.375rem;
+  }
+
+  .title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+</style>
