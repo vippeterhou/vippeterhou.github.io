@@ -151,15 +151,16 @@
     {/each}
   </div>
 
-  <!-- Status bar -->
-  <div class="status-bar">
-    <span class="counter">{pad(minesLeft)}</span>
-    <button class="face-btn" onclick={reset} aria-label="New game">{face}</button>
-    <span class="counter">{pad(elapsed)}</span>
-  </div>
+  <div class="frame">
+    <!-- Status bar -->
+    <div class="status-bar">
+      <span class="counter">{pad(minesLeft)}</span>
+      <button class="face-btn" onclick={reset} aria-label="New game">{face}</button>
+      <span class="counter">{pad(elapsed)}</span>
+    </div>
 
-  <!-- Board -->
-  <div class="board-scroll">
+    <!-- Board -->
+    <div class="board-scroll">
     <div
       class="board"
       style="--cols: {cfg().cols}; --cell: {difficulty === 'expert' ? 28 : 32}px"
@@ -186,6 +187,7 @@
         {/each}
       {/each}
     </div>
+  </div>
   </div>
 
   <!-- Result -->
@@ -231,39 +233,61 @@
     border-color: var(--accent);
   }
 
+  /* ── Frame ── */
+  .frame {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1rem 1.25rem;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
   /* ── Status bar ── */
   .status-bar {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    padding: 0.5rem 1.5rem;
-    background: var(--bg-secondary);
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
   }
 
   .counter {
     font-family: 'Courier New', monospace;
-    font-size: 1.5rem;
+    font-size: 1.625rem;
     font-weight: 700;
-    color: #dc2626;
-    letter-spacing: 0.05em;
+    color: var(--accent);
+    letter-spacing: 0.08em;
     min-width: 3ch;
     text-align: center;
   }
 
   .face-btn {
-    font-size: 1.5rem;
-    background: none;
-    border: none;
+    font-size: 1.625rem;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    border-radius: 6px;
     cursor: pointer;
-    padding: 0.2rem 0.4rem;
-    border-radius: var(--radius);
+    padding: 0.15rem 0.5rem;
     line-height: 1;
-    transition: transform 0.1s;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
   }
 
-  .face-btn:hover { transform: scale(1.2); }
+  .face-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+  }
+
+  .face-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
 
   /* ── Board ── */
   .board-scroll {
@@ -274,11 +298,10 @@
   .board {
     display: grid;
     grid-template-columns: repeat(var(--cols), var(--cell));
-    gap: 1px;
-    background: var(--border);
-    border: 2px solid var(--border);
+    gap: 2px;
+    background: color-mix(in srgb, var(--border) 60%, transparent);
     border-radius: 4px;
-    overflow: hidden;
+    padding: 2px;
   }
 
   .cell {
@@ -291,24 +314,40 @@
     font-weight: 700;
     background: var(--bg-secondary);
     border: none;
+    border-radius: 3px;
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
-    transition: background 0.1s;
     line-height: 1;
+    box-shadow:
+      inset -2px -2px 0 rgba(0,0,0,0.2),
+      inset  2px  2px 0 rgba(255,255,255,0.3);
+    transition: background 0.08s, box-shadow 0.08s;
   }
 
   .cell:hover:not(.revealed):not(.boom) {
-    background: color-mix(in srgb, var(--accent) 12%, var(--bg-secondary));
+    background: color-mix(in srgb, var(--accent) 18%, var(--bg-secondary));
+  }
+
+  .cell:active:not(.revealed):not(.boom) {
+    box-shadow: inset 2px 2px 0 rgba(0,0,0,0.2);
   }
 
   .cell.revealed {
     background: var(--bg);
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.15);
     cursor: default;
   }
 
   .cell.boom {
     background: #dc2626;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
+    animation: boom-flash 0.3s ease;
+  }
+
+  @keyframes boom-flash {
+    0%   { background: #fff; }
+    100% { background: #dc2626; }
   }
 
   /* ── Result ── */
@@ -319,6 +358,7 @@
     letter-spacing: 0.04em;
     padding: 0.5rem 1.5rem;
     border-radius: var(--radius);
+    text-align: center;
   }
 
   .win  { color: #16a34a; background: color-mix(in srgb, #16a34a 10%, transparent); border: 1px solid #16a34a; }
