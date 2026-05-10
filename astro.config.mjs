@@ -4,8 +4,4 @@ import svelte from '@astrojs/svelte'
 export default defineConfig({
   integrations: [svelte()],
   output: 'static',
-  redirects: {
-    '/cv': '/CV.pdf',
-    '/CV': '/CV.pdf',
-  },
 })
