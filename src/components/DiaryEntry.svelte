@@ -35,11 +35,9 @@
   <p class="state">Loading…</p>
 {:else if entry}
   <article class="entry">
-    <h2 class="entry-headline">{entry.headline}</h2>
     {#if entry.byline}<p class="entry-byline">{entry.byline}</p>{/if}
     <p class="entry-date">{entry.date}</p>
-    <hr class="divider" />
-    <p class="entry-abstract">{entry.abstract}</p>
+    <p class="entry-abstract"><span class="entry-headline">{entry.headline}</span>{entry.abstract}</p>
     <a class="read-link" href={entry.url} target="_blank" rel="noopener">
       Read in full on NYT →
     </a>
@@ -59,9 +57,8 @@
   }
 
   .entry-headline {
-    font-size: 1.375rem;
+    display: block;
     font-weight: 600;
-    line-height: 1.3;
     margin-bottom: 0.5rem;
   }
 
@@ -75,6 +72,7 @@
     font-size: 0.8125rem;
     color: var(--text-muted);
     letter-spacing: 0.04em;
+    margin-bottom: 3rem;
   }
 
   .entry-abstract {
