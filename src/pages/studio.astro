@@ -1,43 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 
-const games = [
+const items = [
   {
     title: 'Minesweeper',
     description: 'The classic puzzle game. Clear the board without detonating a mine.',
-    href: '/games/minesweeper',
+    href: '/studio/minesweeper',
     available: true,
   },
   {
     title: 'Metropolitan Diary',
     description: 'A weekly dispatch of reader tales from New York City, via The New York Times.',
-    href: '/games/diary',
+    href: '/studio/diary',
     available: true,
   },
   {
     title: 'Adventure in a 3D World',
     description: 'Explore an interactive 3D world full of surprises.',
-    href: '/games/adventure-3d',
+    href: '/studio/adventure-3d',
     available: false,
   },
 ]
 ---
 
-<BaseLayout title="Games — Peter Hou" description="Games by Peter Hou">
+<BaseLayout title="Studio — Peter Hou" description="Studio by Peter Hou">
   <section class="page-section">
     <div class="container">
 
       <div class="grid">
-        {games.map(game => (
+        {items.map(item => (
           <div class="card">
             <div class="thumbnail" aria-hidden="true">
-              <span class="thumb-label">{game.title[0]}</span>
+              <span class="thumb-label">{item.title[0]}</span>
             </div>
             <div class="card-body">
-              <h2>{game.title}</h2>
-              <p>{game.description}</p>
-              {game.available
-                ? <a href={game.href} class="play-btn">Play</a>
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+              {item.available
+                ? <a href={item.href} class="open-btn">Open</a>
                 : <span class="coming-soon">Coming Soon</span>
               }
             </div>
@@ -107,7 +107,7 @@ const games = [
     line-height: 1.6;
   }
 
-  .play-btn {
+  .open-btn {
     align-self: flex-start;
     margin-top: 0.5rem;
     padding: 0.45rem 1.25rem;
@@ -119,7 +119,7 @@ const games = [
     transition: background var(--transition);
   }
 
-  .play-btn:hover {
+  .open-btn:hover {
     background: var(--accent-hover);
     color: white;
   }
