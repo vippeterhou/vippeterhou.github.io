@@ -24,9 +24,19 @@ try {
     data = await fetchFolder('Home/main-desktop')
   }
 
-  heroImages = (data.resources ?? []).map(r =>
-    r.secure_url.replace('/upload/', '/upload/q_auto,f_auto/')
-  )
+  heroImages = await Promise.all((data.resources ?? []).map(async r => {
+    const lqipUrl = r.secure_url.replace('/upload/', '/upload/w_30,e_blur:500,q_10,f_auto/')
+    const full    = r.secure_url.replace('/upload/', '/upload/q_auto,f_auto/')
+    try {
+      const res    = await fetch(lqipUrl)
+      const buf    = await res.arrayBuffer()
+      const mime   = res.headers.get('content-type') ?? 'image/jpeg'
+      const lqip   = `data:${mime};base64,${Buffer.from(buf).toString('base64')}`
+      return { lqip, full }
+    } catch {
+      return { lqip: lqipUrl, full }
+    }
+  }))
 } catch {}
 ---
 

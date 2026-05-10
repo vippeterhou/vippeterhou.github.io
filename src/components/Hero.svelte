@@ -2,14 +2,18 @@
   import { onMount } from 'svelte'
 
   let { images } = $props()
-  // images: string[] — full-quality Cloudinary URLs
+  // images: [{ lqip, full }]
 
   let url = $state('')
 
   onMount(() => {
-    if (images.length) {
-      url = images[Math.floor(Math.random() * images.length)]
-    }
+    if (!images.length) return
+    const picked = images[Math.floor(Math.random() * images.length)]
+    url = picked.lqip
+    const img = new Image()
+    img.src = picked.full
+    img.onload = () => { url = picked.full }
+    return () => { img.onload = null }
   })
 </script>
 
