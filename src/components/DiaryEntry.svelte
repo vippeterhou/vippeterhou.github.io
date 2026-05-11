@@ -9,13 +9,14 @@
   onMount(async () => {
     try {
       const url = new URL('https://api.nytimes.com/svc/search/v2/articlesearch.json')
-      url.searchParams.set('q', 'Metropolitan Diary')
+      url.searchParams.set('fq', 'kicker:("Metropolitan Diary")')
       url.searchParams.set('sort', 'newest')
       url.searchParams.set('api-key', apiKey)
 
       const res  = await fetch(url)
       const data = await res.json()
-      const doc  = data?.response?.docs?.[0]
+      const docs = data?.response?.docs ?? []
+      const doc  = docs.find(d => d.web_url?.includes('metropolitan-diary')) ?? docs[0]
 
       if (doc) {
         entry = {
