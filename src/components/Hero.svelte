@@ -2,18 +2,12 @@
   import { onMount } from 'svelte'
 
   let { images } = $props()
-  // images: [{ lqip, full }]
 
   let url = $state('')
 
   onMount(() => {
     if (!images.length) return
-    const picked = images[Math.floor(Math.random() * images.length)]
-    url = picked.lqip
-    const img = new Image()
-    img.src = picked.full
-    img.onload = () => { url = picked.full }
-    return () => { img.onload = null }
+    url = images[Math.floor(Math.random() * images.length)]
   })
 </script>
 
@@ -32,7 +26,7 @@
     width: 100%;
     min-height: 70vh;
     position: relative;
-    background-color: #1a2a3a;
+    background-color: var(--bg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
