@@ -9,18 +9,6 @@ import ContactForm from '../components/ContactForm.svelte'
 
       <div class="content">
         <p><strong>Hi, I'm Peter Hou.</strong> You found it!</p>
-        <p>
-          This homepage has gone through three iterations since 2017.
-          The archived versions are still up if you're curious:
-        </p>
-        <ul class="versions">
-          <li>
-            <a href="https://vippeterhou.github.io/HomepageV1" target="_blank" rel="noopener">Time machine → 2017–2023</a>
-          </li>
-          <li>
-            <a href="https://vippeterhou.github.io/HomepageV2" target="_blank" rel="noopener">Time machine → 2022–2026</a>
-          </li>
-        </ul>
       </div>
 
       <hr class="divider" />
@@ -41,29 +29,6 @@ import ContactForm from '../components/ContactForm.svelte'
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-  }
-
-  .versions {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    padding-left: 1rem;
-  }
-
-  .versions li::before {
-    content: '→ ';
-    color: var(--text-muted);
-  }
-
-  .versions a {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .versions a:hover {
-    color: var(--accent-hover);
   }
 
   .contact h2 {
