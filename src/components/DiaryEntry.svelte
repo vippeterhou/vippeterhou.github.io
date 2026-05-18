@@ -4,7 +4,7 @@
   const apiKey  = import.meta.env.PUBLIC_NYT_API_KEY
   const GIST_ID = import.meta.env.PUBLIC_DIARY_GIST_ID
 
-  let entry  = $state(null)
+  let entries = $state([])
   let loading = $state(true)
 
   onMount(async () => {
@@ -24,13 +24,12 @@
       ])
 
       const data = await nytRes.json()
-      const docs = data?.response?.docs ?? []
-      const doc  = docs.find(d => d.web_url?.includes('metropolitan-diary')) ?? docs[0]
+      const docs = (data?.response?.docs ?? []).filter(d => d.web_url?.includes('metropolitan-diary'))
 
-      if (doc) {
+      entries = docs.slice(0, 4).map(doc => {
         const dateKey = doc.pub_date?.slice(0, 10) ?? ''
         const giftUrl = giftMap[dateKey] || ''
-        entry = {
+        return {
           headline: doc.headline?.main ?? '',
           abstract: doc.abstract ?? doc.snippet ?? '',
           date:     new Date(doc.pub_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
@@ -38,7 +37,7 @@
           url:      giftUrl || doc.web_url,
           isGift:   !!giftUrl,
         }
-      }
+      })
     } catch {}
     loading = false
   })
@@ -46,15 +45,33 @@
 
 {#if loading}
   <p class="state">Loading…</p>
-{:else if entry}
+{:else if entries.length}
   <article class="entry">
-    {#if entry.byline}<p class="entry-byline">{entry.byline}</p>{/if}
-    <p class="entry-date">{entry.date}</p>
-    <p class="entry-abstract"><span class="entry-headline">{entry.headline}</span>{entry.abstract}</p>
-    <a class="read-link" href={entry.url} target="_blank" rel="noopener">
-      {entry.isGift ? 'Read in full (free) →' : 'Read in full on NYT →'}
+    {#if entries[0].byline}<p class="entry-byline">{entries[0].byline}</p>{/if}
+    <p class="entry-date">{entries[0].date}</p>
+    <p class="entry-abstract"><span class="entry-headline">{entries[0].headline}</span>{entries[0].abstract}</p>
+    <a class="read-link" href={entries[0].url} target="_blank" rel="noopener">
+      Read in full on NYT →
     </a>
+    {#if entries[0].isGift}
+      <p class="gift-note">No subscription needed — I got your back.</p>
+    {/if}
   </article>
+
+  {#if entries.length > 1}
+    <hr class="divider" />
+    <p class="past-label">Past Editions</p>
+    <ul class="past-list">
+      {#each entries.slice(1) as entry}
+        <li>
+          <a href={entry.url} target="_blank" rel="noopener" class="past-link">
+            <span class="past-headline">{entry.headline}</span>
+            <span class="past-date">{entry.date}</span>
+          </a>
+        </li>
+      {/each}
+    </ul>
+  {/if}
 {:else}
   <p class="state">Could not load entry.</p>
 {/if}
@@ -106,5 +123,60 @@
 
   .read-link:hover {
     opacity: 0.7;
+  }
+
+  .gift-note {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+    max-width: 640px;
+  }
+
+  .past-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .past-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .past-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: color var(--transition);
+  }
+
+  .past-link:hover {
+    color: var(--accent);
+  }
+
+  .past-headline {
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  .past-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    white-space: nowrap;
   }
 </style>
