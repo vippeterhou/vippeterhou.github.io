@@ -73,7 +73,7 @@
     font-size: 0.8125rem;
     color: var(--text-muted);
     letter-spacing: 0.04em;
-    margin-bottom: 3rem;
+    margin-bottom: 0.75rem;
   }
 
   .entry-abstract {
