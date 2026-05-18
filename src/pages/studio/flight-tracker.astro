@@ -6,6 +6,18 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
   <section class="page-section">
     <div class="container">
       <h1 class="title">Flight Tracker</h1>
+      <p class="intro">
+        When your beloved ones are on a flight, you want to know — is it on schedule? Did they depart? Did they land?
+        I built this project so I can add their flight and get a Telegram notification at every stage:
+        departure (left the gate), airborne (wheels off), landed (touchdown), and arrived (at the gate).
+        I hope they receive the same notifications when I'm the one flying.
+        It's a small thing, but knowing your beloved ones landed safely without having to ask "Did you land?" is worth the entire project.
+      </p>
+      <p class="intro">
+        Plus, you can follow the live position of the flight, which makes the experience fun.
+        I also realized this app doubles as a personal flight record — remarkable if you fly often.
+        Looking through those past flights brings back the memories and stories. They're all bonuses.
+      </p>
     </div>
   </section>
   <div class="embed">
@@ -27,8 +39,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
     font-size: 2rem;
     font-weight: 700;
     color: var(--accent);
-    margin-bottom: 0;
+    margin-bottom: 0.75rem;
     text-align: left;
+  }
+
+  .intro {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.7;
   }
 
   .embed {
