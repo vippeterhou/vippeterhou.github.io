@@ -1,30 +1,42 @@
 <script>
   import { onMount } from 'svelte'
 
-  const apiKey = import.meta.env.PUBLIC_NYT_API_KEY
+  const apiKey  = import.meta.env.PUBLIC_NYT_API_KEY
+  const GIST_ID = import.meta.env.PUBLIC_DIARY_GIST_ID
 
   let entry  = $state(null)
   let loading = $state(true)
 
   onMount(async () => {
     try {
-      const url = new URL('https://api.nytimes.com/svc/search/v2/articlesearch.json')
-      url.searchParams.set('fq', 'kicker:("Metropolitan Diary")')
-      url.searchParams.set('sort', 'newest')
-      url.searchParams.set('api-key', apiKey)
+      const [nytRes, giftMap] = await Promise.all([
+        fetch((() => {
+          const url = new URL('https://api.nytimes.com/svc/search/v2/articlesearch.json')
+          url.searchParams.set('fq', 'kicker:("Metropolitan Diary")')
+          url.searchParams.set('sort', 'newest')
+          url.searchParams.set('api-key', apiKey)
+          return url
+        })()),
+        GIST_ID
+          ? fetch(`https://gist.githubusercontent.com/vippeterhou/${GIST_ID}/raw/diary-gift.json`)
+              .then(r => r.json()).catch(() => ({}))
+          : Promise.resolve({}),
+      ])
 
-      const res  = await fetch(url)
-      const data = await res.json()
+      const data = await nytRes.json()
       const docs = data?.response?.docs ?? []
       const doc  = docs.find(d => d.web_url?.includes('metropolitan-diary')) ?? docs[0]
 
       if (doc) {
+        const dateKey = doc.pub_date?.slice(0, 10) ?? ''
+        const giftUrl = giftMap[dateKey] || ''
         entry = {
           headline: doc.headline?.main ?? '',
           abstract: doc.abstract ?? doc.snippet ?? '',
           date:     new Date(doc.pub_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
           byline:   doc.byline?.original ?? '',
-          url:      doc.web_url,
+          url:      giftUrl || doc.web_url,
+          isGift:   !!giftUrl,
         }
       }
     } catch {}
@@ -40,7 +52,7 @@
     <p class="entry-date">{entry.date}</p>
     <p class="entry-abstract"><span class="entry-headline">{entry.headline}</span>{entry.abstract}</p>
     <a class="read-link" href={entry.url} target="_blank" rel="noopener">
-      Read in full on NYT →
+      {entry.isGift ? 'Read in full (free) →' : 'Read in full on NYT →'}
     </a>
   </article>
 {:else}
