@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+---
+
+<BaseLayout title="Jukebox — Peter Hou" description="Peter's playlist on Spotify">
+  <section class="page-section">
+    <div class="container">
+      <h1 class="title">Jukebox</h1>
+      <p class="intro">
+        Hit play and enjoy. Music stops when you leave the page — so stay a while.
+      </p>
+      <div class="player">
+        <iframe
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1F5p3rmiWPIYgZ?utm_source=generator&theme=0"
+          width="100%"
+          height="552"
+          frameBorder="0"
+          allowfullscreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .player {
+    margin-top: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 640px;
+  }
+
+  .player iframe {
+    display: block;
+    border: none;
+  }
+</style>
