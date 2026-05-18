@@ -6,7 +6,8 @@ const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME
 const apiKey    = import.meta.env.CLOUDINARY_API_KEY
 const apiSecret = import.meta.env.CLOUDINARY_API_SECRET
 
-let heroImages = []
+let desktopImages = []
+let mobileImages  = []
 
 try {
   const credentials = btoa(`${apiKey}:${apiSecret}`)
@@ -19,14 +20,20 @@ try {
     return res.json()
   }
 
-  const data = await fetchFolder('main-desktop')
-
-  heroImages = (data.resources ?? []).map(r =>
+  const toUrls = (data) => (data.resources ?? []).map(r =>
     r.secure_url.replace('/upload/', '/upload/q_auto,f_auto/')
   )
+
+  const [desktopData, mobileData] = await Promise.all([
+    fetchFolder('main-desktop'),
+    fetchFolder('main-mobile'),
+  ])
+
+  desktopImages = toUrls(desktopData)
+  mobileImages  = toUrls(mobileData)
 } catch {}
 ---
 
 <BaseLayout title="Peter Hou">
-  <Hero images={heroImages} client:load />
+  <Hero desktop={desktopImages} mobile={mobileImages} client:load />
 </BaseLayout>

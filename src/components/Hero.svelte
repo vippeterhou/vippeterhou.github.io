@@ -1,11 +1,13 @@
 <script>
   import { onMount } from 'svelte'
 
-  let { images } = $props()
+  let { desktop, mobile } = $props()
 
   let url = $state('')
 
   onMount(() => {
+    const isMobile = window.matchMedia('(orientation: portrait) and (max-width: 480px)').matches
+    const images = isMobile && mobile.length ? mobile : desktop
     if (!images.length) return
     url = images[Math.floor(Math.random() * images.length)]
   })
