@@ -19,7 +19,11 @@
   aria-label="Hero"
 >
   <div class="overlay"></div>
-  <h1 class="name">Peter Hou</h1>
+  <h1 class="name">
+    {#each 'Peter Hou'.split('') as char, i}
+      <span class="letter" style="animation-delay: {i * 0.12}s">{char === ' ' ? '\u00A0' : char}</span>
+    {/each}
+  </h1>
 </section>
 
 <style>
@@ -59,6 +63,20 @@
     color: #ffffff;
     padding: 2.5rem 3rem;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-40px);
+    animation: letter-drop 0.6s ease forwards;
+  }
+
+  @keyframes letter-drop {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (max-width: 480px) {
