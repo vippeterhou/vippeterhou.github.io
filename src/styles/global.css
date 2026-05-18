@@ -89,6 +89,21 @@ h1, h2, h3 {
   animation: fade-up 0.4s ease both;
 }
 
+.page-section .title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  text-align: left;
+}
+
+.page-section .intro {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
