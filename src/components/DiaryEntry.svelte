@@ -44,7 +44,14 @@
 </script>
 
 {#if loading}
-  <p class="state">Loading…</p>
+  <div class="skeleton-entry" aria-hidden="true">
+    <div class="skeleton" style="width: 30%; height: 0.875rem; margin-bottom: 1rem;"></div>
+    <div class="skeleton" style="width: 55%; height: 1.375rem; margin-bottom: 1.25rem;"></div>
+    <div class="skeleton" style="width: 100%; height: 1.0625rem; margin-bottom: 0.75rem;"></div>
+    <div class="skeleton" style="width: 75%; height: 1.0625rem; margin-bottom: 2rem;"></div>
+    <div class="skeleton" style="width: 10rem; height: 1.375rem; margin-bottom: 0.75rem;"></div>
+    <div class="skeleton" style="width: 40%; height: 0.875rem;"></div>
+  </div>
 {:else if entries.length}
   <article class="entry">
     {#if entries[0].byline}<p class="entry-byline">{entries[0].byline}</p>{/if}
@@ -80,6 +87,10 @@
   .state {
     font-size: 0.9375rem;
     color: var(--text-muted);
+  }
+
+  .skeleton-entry {
+    max-width: 640px;
   }
 
   .entry {
