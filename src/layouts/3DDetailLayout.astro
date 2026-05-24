@@ -15,7 +15,7 @@ const skeletonId = `skeleton-${title.toLowerCase().replace(/\W+/g, '-')}`
   <section class="page-section">
     <div class="container">
       <a class="back" href="/studio/3d-collection">&larr; 3D Collection</a>
-      <h1 class="title">{title}</h1>
+      <h1 class="model-title">{title}</h1>
       {description && <p class="description">{description}</p>}
       <slot />
       <div class="viewer">
@@ -51,7 +51,7 @@ const skeletonId = `skeleton-${title.toLowerCase().replace(/\W+/g, '-')}`
     color: var(--accent);
   }
 
-  .title {
+  .model-title {
     font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 700;
