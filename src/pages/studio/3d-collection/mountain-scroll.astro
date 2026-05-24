@@ -1,0 +1,32 @@
+---
+import DetailLayout from '../../../layouts/3DDetailLayout.astro'
+---
+
+<DetailLayout
+  title="Mountain and River Scroll"
+  src="https://sketchfab.com/models/dd37769bdc0148a988535f893d01c551/embed?autostart=1&dnt=1"
+>
+  <p class="description">
+    This model is inspired by <em>A Thousand Li of Rivers and Mountains</em>, a celebrated landscape scroll painted by Wang Ximeng during the Northern Song Dynasty (960–1127). I like the vibe of the reproduction — the layered mountains and the handwriting drifting through the background. Worth noting: the mountains here don't follow the exact positions of the original, and the model captures only a tenth of the scroll's full length. As for the calligraphy, I know it's a tough task to reproduce it in the model — a purist would have a few words to say — but the spirit is there. Check out more details from the <a class="ext-link" href="https://www.dpm.org.cn/collection/paint/228354.html" target="_blank" rel="noopener">Palace Museum</a>.
+  </p>
+</DetailLayout>
+
+<style>
+  .description {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-top: 0.5rem;
+  }
+
+  .ext-link {
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 0.1rem;
+  }
+
+  .ext-link:hover {
+    opacity: 0.7;
+  }
+</style>
