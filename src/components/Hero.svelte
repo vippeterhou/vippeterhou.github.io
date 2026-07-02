@@ -4,20 +4,32 @@
   let { desktop, mobile } = $props()
 
   let url = $state('')
+  let loaded = $state(false)
 
   onMount(() => {
     const isMobile = window.matchMedia('(orientation: portrait) and (max-width: 480px)').matches
     const images = isMobile && mobile.length ? mobile : desktop
     if (!images.length) return
     url = images[Math.floor(Math.random() * images.length)]
+
+    const img = new Image()
+    img.onload = () => { loaded = true }
+    img.onerror = () => { loaded = true }
+    img.src = url
   })
 </script>
 
 <section
   class="hero"
-  style={url ? `background-image: url('${url}')` : ''}
+  style={loaded && url ? `background-image: url('${url}')` : ''}
+  class:loaded={loaded && url}
   aria-label="Hero"
 >
+  {#if url && !loaded}
+    <div class="loader" aria-hidden="true">
+      <div class="spinner"></div>
+    </div>
+  {/if}
   <div class="overlay"></div>
   <h1 class="name">
     {#each 'Peter Hou'.split('') as char, i}
@@ -39,6 +51,58 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  /* Animated shimmer placeholder shown until the image loads */
+  .hero:not(.loaded)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      var(--bg-secondary) 30%,
+      color-mix(in srgb, var(--bg-secondary) 60%, var(--border)) 50%,
+      var(--bg-secondary) 70%
+    );
+    background-size: 200% 100%;
+    animation: hero-shimmer 1.4s ease-in-out infinite;
+  }
+
+  .hero.loaded {
+    animation: hero-fade-in 0.6s ease forwards;
+  }
+
+  @keyframes hero-shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+  }
+
+  @keyframes hero-fade-in {
+    from { background-color: var(--bg-secondary); }
+    to   { background-color: var(--bg); }
+  }
+
+  .loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .spinner {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 3px solid color-mix(in srgb, var(--text-muted) 30%, transparent);
+    border-top-color: var(--accent);
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 
   .overlay {
@@ -82,6 +146,14 @@
   @media (max-width: 480px) {
     .name {
       padding: 1.75rem 1.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero:not(.loaded)::before,
+    .hero.loaded,
+    .spinner {
+      animation: none;
     }
   }
 </style>
