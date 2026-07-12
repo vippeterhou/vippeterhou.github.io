@@ -80,13 +80,21 @@
     </ul>
   {/if}
 {:else}
-  <p class="state">Could not load entry.</p>
+  <p class="state">
+    Could not load entry. Please make sure you can access
+    <a href="https://www.nytimes.com/" target="_blank" rel="noopener">nytimes.com</a>.
+  </p>
 {/if}
 
 <style>
   .state {
     font-size: 0.9375rem;
     color: var(--text-muted);
+  }
+
+  .state a {
+    color: var(--accent);
+    text-decoration: underline;
   }
 
   .skeleton-entry {
