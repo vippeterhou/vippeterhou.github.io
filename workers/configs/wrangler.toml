@@ -2,11 +2,19 @@ name = "configs"
 main = "src/index.js"
 compatibility_date = "2024-11-01"
 
+# Serve only on the custom domain below — no workers.dev or preview URLs.
+workers_dev = false
+preview_urls = false
+
 # Serve the worker at configs.houbitan.com (houbitan.com must be a zone on
 # this Cloudflare account; custom_domain provisions the hostname + DNS).
 routes = [
   { pattern = "configs.houbitan.com", custom_domain = true }
 ]
+
+[observability.logs]
+enabled = false
+invocation_logs = true
 
 # KV namespace holding the config flags. Create it with:
 #   wrangler kv namespace create CONFIGS
