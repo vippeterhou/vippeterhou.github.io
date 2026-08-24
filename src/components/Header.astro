@@ -5,7 +5,7 @@ const navLinks = [
   { href: '/',        label: 'Home'    },
   { href: '/studio',  label: 'Studio'  },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/cv',      label: 'CV'      },
+  { href: '/cv',      label: 'CV', enabled: false },
   { href: '/about',   label: 'About'   },
 ]
 
@@ -30,7 +30,7 @@ const current = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path
   <nav aria-label="Main navigation">
     <ul>
       {navLinks.map(link => (
-        <li>
+        <li data-enabled={link.enabled === undefined ? undefined : ''} hidden={link.enabled === false}>
           <a
             href={link.href}
             class:list={['nav-link', { active: current === link.href }]}
@@ -42,6 +42,29 @@ const current = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path
     </ul>
   </nav>
 </header>
+
+<!-- Show/hide enabled-controlled nav items (e.g. CV) based on configs.houbitan.com -->
+<script is:inline>
+  ;(function () {
+    const apply = enabled =>
+      document.querySelectorAll('[data-enabled]').forEach(el => {
+        if (enabled) el.removeAttribute('hidden')
+        else el.setAttribute('hidden', '')
+      })
+
+    // Apply cached state instantly on subsequent page loads, then refresh.
+    if (sessionStorage.getItem('cv_enabled') === 'true') apply(true)
+
+    fetch('https://configs.houbitan.com/cv_enabled')
+      .then(r => r.json())
+      .then(d => {
+        const enabled = !!(d && d.value === true)
+        sessionStorage.setItem('cv_enabled', enabled ? 'true' : 'false')
+        apply(enabled)
+      })
+      .catch(() => {})
+  })()
+</script>
 
 <style>
   header {

@@ -1,0 +1,16 @@
+name = "configs"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Serve the worker at configs.houbitan.com (houbitan.com must be a zone on
+# this Cloudflare account; custom_domain provisions the hostname + DNS).
+routes = [
+  { pattern = "configs.houbitan.com", custom_domain = true }
+]
+
+# KV namespace holding the config flags. Create it with:
+#   wrangler kv namespace create CONFIGS
+# then paste the returned id below.
+[[kv_namespaces]]
+binding = "CONFIGS"
+id = "787c3131773249cd830efda6460f9d66"
