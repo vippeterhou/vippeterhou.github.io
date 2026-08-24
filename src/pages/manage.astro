@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 
+const diaryGistId = import.meta.env.PUBLIC_DIARY_GIST_ID
+
 const services = [
   {
     category: 'Hosting',
@@ -30,11 +32,6 @@ const services = [
         description: 'CDN and DNS management.',
         href: 'https://dash.cloudflare.com',
       },
-      {
-        name: 'ClustrMaps',
-        description: 'Visitor globe — see where visitors come from.',
-        href: 'https://clustrmaps.com/site/1a7d3',
-      },
     ],
   },
   {
@@ -54,6 +51,11 @@ const services = [
         name: 'NYT Developer Portal',
         description: 'API key management for Metropolitan Diary.',
         href: 'https://developer.nytimes.com/my-apps',
+      },
+      {
+        name: 'Diary Gist',
+        description: 'Gist holding gift-article links for Metropolitan Diary entries.',
+        href: `https://gist.github.com/vippeterhou/${diaryGistId}`,
       },
       {
         name: 'Flight Tracker',
