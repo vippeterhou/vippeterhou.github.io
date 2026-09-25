@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="Guangyun Explorer — Peter Hou"
+  description="An interactive explorer for the historic Guangyun rhyme dictionary"
+>
+  <section class="page-section">
+    <div class="container">
+      <h1 class="title">Guangyun Explorer</h1>
+      <p class="intro">
+        <em>Guangyun</em> is an eleventh-century Chinese rhyme dictionary and an important source for studying
+        Middle Chinese phonology. I built this project to make its structure and contents easier to explore:
+        search for a character to find its volume, tone, rhyme, sub-rhyme, fanqie spelling, and original definition.
+      </p>
+      <p class="intro">
+        Beyond individual lookups, the visual overview reveals how the dictionary is organized across five volumes
+        and 206 rhymes, with interactive views of rhyme groups, homophones, character density, and fanqie relationships.
+      </p>
+    </div>
+  </section>
+  <div class="embed">
+    <iframe
+      id="guangyun-frame"
+      title="Guangyun Explorer"
+      allowfullscreen
+    ></iframe>
+  </div>
+</BaseLayout>
+
+<script>
+  const frame = document.querySelector<HTMLIFrameElement>('#guangyun-frame')
+
+  if (frame) {
+    const syncTheme = () => {
+      const theme = document.documentElement.getAttribute('data-theme') ?? 'light'
+      const url = new URL('https://guangyun.onrender.com/')
+      url.searchParams.set('clawpilotTheme', theme)
+
+      if (frame.src !== url.href) {
+        frame.src = url.href
+      }
+    }
+
+    syncTheme()
+    new MutationObserver(syncTheme).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    })
+  }
+</script>
+
+<style>
+  .page-section {
+    padding-bottom: 1rem;
+  }
+
+  .intro + .intro {
+    margin-top: 1.25rem;
+  }
+
+  .embed {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+  }
+
+  iframe {
+    flex: 1;
+    width: 100%;
+    min-height: 80vh;
+    border: none;
+  }
+</style>
