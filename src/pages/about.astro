@@ -19,6 +19,7 @@ import ContactForm from '../components/ContactForm.svelte'
           <summary>Travel</summary>
           <div class="collapsible-body">
             <p>I travel when I get the chance — and that's quite a lot. I love losing myself in different cultures and chasing landscapes that take my breath away.</p>
+            <p class="more-to-come">More stories and destinations will find their way here over time.</p>
           </div>
         </details>
         <details class="collapsible">
@@ -44,9 +45,15 @@ import ContactForm from '../components/ContactForm.svelte'
           <summary>Other hobbies</summary>
           <div class="collapsible-body">
             <p>Beyond what I've shared above, I have some other casual hobbies.</p>
+            <p class="more-to-come">This list is still taking shape — more to come.</p>
           </div>
         </details>
-        <p>I currently live on Mercer Island, nestled in Lake Washington just east of downtown Seattle.</p>
+        <details class="collapsible">
+          <summary>Home</summary>
+          <div class="collapsible-body">
+            <p>I currently live on Mercer Island, nestled in Lake Washington just east of downtown Seattle.</p>
+          </div>
+        </details>
       </div>
 
       <hr class="divider" />
@@ -103,6 +110,11 @@ import ContactForm from '../components/ContactForm.svelte'
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  .more-to-come {
+    color: var(--text-muted);
+    font-style: italic;
   }
 
   .contact h2 {
