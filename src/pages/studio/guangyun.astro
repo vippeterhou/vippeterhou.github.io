@@ -35,7 +35,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
   if (frame) {
     const syncTheme = () => {
       const theme = document.documentElement.getAttribute('data-theme') ?? 'light'
-      const url = new URL('https://guangyun.onrender.com/')
+      const url = new URL('https://guangyun.houbitan.com/')
       url.searchParams.set('clawpilotTheme', theme)
 
       if (frame.src !== url.href) {
